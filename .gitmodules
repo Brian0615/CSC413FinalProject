@@ -1,6 +1,0 @@
-[submodule "ResNeSt"]
-	path = ResNeSt
-	url = git@github.com:Brian0615/ResNeSt.git
-[submodule "HMSA"]
-	path = HMSA
-	url = git@github.com:Brian0615/semantic-segmentation.git
