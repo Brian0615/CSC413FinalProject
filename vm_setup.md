@@ -331,7 +331,7 @@ The HMSA paper uses the Mapillary Vistas and Cityscapes datasets.
    wget -c -t 0 --load-cookies cookies.txt -O leftImg8bit_trainextra.zip https://www.cityscapes-dataset.com/file-handling/?packageID=4
    ```
 
-5. Unzip the files we downloading using:
+5. Unzip the files we downloaded using:
 
    ```bash
    unzip <filename>.zip
