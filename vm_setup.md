@@ -84,7 +84,7 @@
    xrdb $HOME/.Xresources
    xsetroot -solid grey
    export XKL_XMODMAP_DISABLE=1
-   export XDG_CURRENT_DESKTOP="GNOME-Flashback:Unity"
+   export XDG_CURRENT_DESKTOP="GNOME-Flashback:Unvncity"
    export XDG_MENU_PREFIX="gnome-flashback-"
    unset DBUS_SESSION_BUS_ADDRESS
    gnome-session --session=gnome-flashback-metacity --disable-acceleration-check --debug &amp;
@@ -167,4 +167,172 @@ The instructions below are for Miniconda, a minimal installer for conda.
 
    ```bash
    conda config --add channels conda-forge
+   ```
+
+## Part 6: Installing Required Packages
+
+> Note: Ensure the packages are installed in the `py36` environment!
+
+### Packages for Hierarchical Multi-Scale Attention
+
+1. Install Pytorch 1.4.0 with CUDA 10.1:
+
+   ```bash
+   conda install pytorch==1.4.0 torchvision==0.5.0 cudatoolkit=10.1 -c pytorch
+   ```
+
+2. Install the packages for HMSA:
+
+   ```bash
+   conda install numpy scikit-learn h5py jupyter scikit-image pillow piexif cffi tqdm dominate opencv nose ninja
+
+   pip install runx==0.0.6
+
+   sudo apt-get install libgtk2.0-dev -y
+
+   sudo rm -rf /var/lib/apt/lists/*
+   ```
+
+3. Install Apex (for HMSA). This part requires GPU!
+
+   ```bash
+   cd /home/
+
+   sudo git clone https://github.com/NVIDIA/apex.git apex
+
+   cd apex
+
+   python setup.py install --cuda_ext --cpp_ext
+   ```
+
+### Packages for ResNeSt
+
+1. We need to install the PyTorch-Encoding pacakge.
+
+   ```bash
+   cd ~/Documents/CSC413FinalProject/PyTorch-Encoding/
+
+   python setup.py install
+   ```
+
+## Part 7: Downloading Datasets
+
+The HMSA paper uses the Mapillary Vistas and Cityscapes datasets.
+
+### Mapillary Vistas Dataset
+
+1. Create a folder for downloading the datasets.
+
+   ```bash
+   cd ~/Documents/
+
+   mkdir data
+
+   cd data
+
+   mkdir mapillary
+
+   cd mapillary
+   ```
+
+2. Request access for the research edition dataset [here](https://www.mapillary.com/dataset/vistas/).
+
+3. There are two parts to the dataset file, which will be sent via email. Download, assemble, and unzip them by running the following. This should take ~15-20 mins.
+
+   ```bash
+   wget mapillary_vistas_v2_part.z01 "<insert part 1 link here>"
+
+   wget mapillary_vistas_v2_part.zip "<insert part 2 link here>"
+
+   zip -s 0 mapillary_vistas_v2_part.zip --out mapillary-vistas-dataset_public_v2.0.zip
+
+   unzip mapillary-vistas-dataset_public_v2.0.zip
+   ```
+
+4. Remove unneeded files.
+
+   ```bash
+   rm mapillary_vistas_v2_part.z01
+
+   rm mapillary_vistas_v2_part.zip
+   ```
+
+5. The folder structure should look like this:
+
+   ```bash
+   mapillary
+   ├── README
+   ├── config_v1.2.json
+   ├── config_v2.0.json
+   ├── demo.py
+   ├── testing
+   │   └── images
+   ├── training
+   │   ├── images
+   │   ├── v1.2
+   │   └── v2.0
+   └── validation
+      ├── images
+      ├── v1.2
+      └── v2.0
+   ```
+
+6. Update `config.py` inside the HMSA code.
+
+   ```bash
+   __C.DATASET.MAPILLARY_DIR = '~/Documents/data/mapillary'
+   ```
+
+### Cityscapes Dataset
+
+1. Create a folder to store the data.
+
+   ```bash
+   cd ~/Documents/data
+
+   mkdir cityscapes
+
+   cd cityscapes
+   ```
+
+2. Create an account [here](https://www.cityscapes-dataset.com/).
+
+3. Log in to the Cityscapes using your username and password.
+
+   ```bash
+   wget --keep-session-cookies --save-cookies=cookies.txt --post-data 'username=USERNAME&password=PASSWORD&submit=Login' https://www.cityscapes-dataset.com/login/
+   ```
+
+4. Download the datasets we need. We need the following files:
+
+   ```bash
+   id    filename                      size     est_time    md5sum
+   1     gtFine_trainvaltest.zip       241MB    < 1 min     4237c19de34c8a376e9ba46b495d6f66
+   2     gtCoarse.zip                  1.3GB    1 min       1c7b95c84b1d36cc59a9194d8e5b989f
+   3     leftImg8bit_trainvaltest.zip  11GB     10-15 min   0a6e97e94b616a514066c9e2adb0c97f
+   4     leftImg8bit_trainextra.zip    44GB     35 min      9167a331a158ce3e8989e166c95d56d4
+   ```
+
+   The general download command is below.
+
+   ```bash
+   wget -c -t 0 --load-cookies cookies.txt -O <filename> https://www.cityscapes-dataset.com/file-handling/?packageID=<package_id>
+   ```
+
+   These are the specific commands for the 4 files:
+
+   ```bash
+   wget -c t 0 --load-cookies cookies.txt -O gtFine_trainvaltest.zip https://www.cityscapes-dataset.com/file-handling/?packageID=1
+
+   wget -c t 0 --load-cookies cookies.txt -O gtCoarse.zip https://www.cityscapes-dataset.com/file-handling/?packageID=2
+
+   wget -c t 0 --load-cookies cookies.txt -O leftImg8bit_trainvaltest.zip https://www.cityscapes-dataset.com/file-handling/?packageID=3
+
+   wget -c -t 0 --load-cookies cookies.txt -O leftImg8bit_trainextra.zip https://www.cityscapes-dataset.com/file-handling/?packageID=4
+   ```
+
+5. Unzip the files we downloading using:
+
+   ```bash
+   unzip <filename>.zip
    ```
