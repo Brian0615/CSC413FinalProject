@@ -240,9 +240,9 @@ The HMSA paper uses the Mapillary Vistas and Cityscapes datasets.
 3. There are two parts to the dataset file, which will be sent via email. Download, assemble, and unzip them by running the following. This should take ~15-20 mins.
 
    ```bash
-   wget mapillary_vistas_v2_part.z01 "<insert part 1 link here>"
+   wget -O mapillary_vistas_v2_part.z01 "<insert part 1 link here>"
 
-   wget mapillary_vistas_v2_part.zip "<insert part 2 link here>"
+   wget -O mapillary_vistas_v2_part.zip "<insert part 2 link here>"
 
    zip -s 0 mapillary_vistas_v2_part.zip --out mapillary-vistas-dataset_public_v2.0.zip
 
