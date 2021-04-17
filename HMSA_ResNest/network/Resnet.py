@@ -38,7 +38,7 @@ import torch
 import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 import network.mynn as mynn
-from ..nn import SplAtConv2d, DropBlock2D, GlobalAvgPool2d, RFConv2d
+from encoding.nn import SplAtConv2d, DropBlock2D, GlobalAvgPool2d, RFConv2d
 
 
 __all__ = ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101',

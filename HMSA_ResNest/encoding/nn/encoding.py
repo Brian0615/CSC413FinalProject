@@ -68,7 +68,7 @@ class Encoding(Module):
     Examples:
         >>> import encoding
         >>> import torch
-        >>> import torch.nn.functional as F
+        >>> import torch.nn_encoding.functional as F
         >>> from torch.autograd import Variable
         >>> B,C,H,W,K = 2,3,4,5,6
         >>> X = Variable(torch.cuda.DoubleTensor(B,C,H,W).uniform_(-0.5,0.5), requires_grad=True)
@@ -245,15 +245,15 @@ class UpsampleConv2d(Module):
 
     Examples:
         >>> # With square kernels and equal stride
-        >>> m = nn.UpsampleCov2d(16, 33, 3, stride=2)
+        >>> m = nn_encoding.UpsampleCov2d(16, 33, 3, stride=2)
         >>> # non-square kernels and unequal stride and with padding
-        >>> m = nn.UpsampleCov2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2))
+        >>> m = nn_encoding.UpsampleCov2d(16, 33, (3, 5), stride=(2, 1), padding=(4, 2))
         >>> input = autograd.Variable(torch.randn(20, 16, 50, 100))
         >>> output = m(input)
         >>> # exact output size can be also specified as an argument
         >>> input = autograd.Variable(torch.randn(1, 16, 12, 12))
-        >>> downsample = nn.Conv2d(16, 16, 3, stride=2, padding=1)
-        >>> upsample = nn.UpsampleCov2d(16, 16, 3, stride=2, padding=1)
+        >>> downsample = nn_encoding.Conv2d(16, 16, 3, stride=2, padding=1)
+        >>> upsample = nn_encoding.UpsampleCov2d(16, 16, 3, stride=2, padding=1)
         >>> h = downsample(input)
         >>> h.size()
         torch.Size([1, 16, 6, 6])

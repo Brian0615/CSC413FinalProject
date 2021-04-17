@@ -55,7 +55,7 @@ class BasicBlock(ResNetBlockBase):
             out_channels (int): Number of output channels.
             stride (int): Stride for the first conv.
             norm (str or callable): A callable that takes the number of
-                channels and returns a `nn.Module`, or a pre-defined string
+                channels and returns a `nn_encoding.Module`, or a pre-defined string
                 (one of {"FrozenBN", "BN", "GN"}).
         """
         super().__init__(in_channels, out_channels, stride)
@@ -131,7 +131,7 @@ class BottleneckBlock(ResNetBlockBase):
         """
         Args:
             norm (str or callable): a callable that takes the number of
-                channels and return a `nn.Module`, or a pre-defined string
+                channels and return a `nn_encoding.Module`, or a pre-defined string
                 (one of {"FrozenBN", "BN", "GN"}).
             stride_in_1x1 (bool): when stride==2, whether to put stride in the
                 first 1x1 convolution or the bottleneck 3x3 convolution.
@@ -462,7 +462,7 @@ class BasicStem(nn.Module):
         """
         Args:
             norm (str or callable): a callable that takes the number of
-                channels and return a `nn.Module`, or a pre-defined string
+                channels and return a `nn_encoding.Module`, or a pre-defined string
                 (one of {"FrozenBN", "BN", "GN"}).
         """
         super().__init__()

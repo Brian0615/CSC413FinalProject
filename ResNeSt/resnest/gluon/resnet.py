@@ -140,8 +140,8 @@ class ResNet(HybridBlock):
         Applying dilation strategy to pretrained ResNet yielding a stride-8 model,
         typically used in Semantic Segmentation.
     norm_layer : object
-        Normalization layer used (default: :class:`mxnet.gluon.nn.BatchNorm`)
-        Can be :class:`mxnet.gluon.nn.BatchNorm` or :class:`mxnet.gluon.contrib.nn.SyncBatchNorm`.
+        Normalization layer used (default: :class:`mxnet.gluon.nn_encoding.BatchNorm`)
+        Can be :class:`mxnet.gluon.nn_encoding.BatchNorm` or :class:`mxnet.gluon.contrib.nn_encoding.SyncBatchNorm`.
     last_gamma : bool, default False
         Whether to initialize the gamma of the last BatchNorm layer in each bottleneck to zero.
     deep_stem : bool, default False

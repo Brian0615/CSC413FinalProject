@@ -153,7 +153,7 @@ class ResNet(nn.Module):
         Applying dilation strategy to pretrained ResNet yielding a stride-8 model,
         typically used in Semantic Segmentation.
     norm_layer : object
-        Normalization layer used in backbone network (default: :class:`mxnet.gluon.nn.BatchNorm`;
+        Normalization layer used in backbone network (default: :class:`mxnet.gluon.nn_encoding.BatchNorm`;
         for Synchronized Cross-GPU BachNormalization).
 
     Reference:

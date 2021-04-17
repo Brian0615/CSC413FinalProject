@@ -72,7 +72,7 @@ class DistSyncBatchNorm(_BatchNorm):
 
     Examples:
         >>> m = DistSyncBatchNorm(100)
-        >>> net = torch.nn.parallel.DistributedDataParallel(m)
+        >>> net = torch.nn_encoding.parallel.DistributedDataParallel(m)
         >>> output = net(input)
     """
     def __init__(self, num_features, eps=1e-5, momentum=0.1, process_group=None):
@@ -146,7 +146,7 @@ class SyncBatchNorm(_BatchNorm):
 
     Examples:
         >>> m = SyncBatchNorm(100)
-        >>> net = torch.nn.DataParallel(m)
+        >>> net = torch.nn_encoding.DataParallel(m)
         >>> output = net(input)
         >>> # for Inpace ABN
         >>> ABN = partial(SyncBatchNorm, activation='leaky_relu', slope=0.01, sync=True, inplace=True)
@@ -214,29 +214,29 @@ class SyncBatchNorm(_BatchNorm):
 class BatchNorm1d(SyncBatchNorm):
     r"""
     .. warning::
-        BatchNorm1d is deprecated in favor of :class:`encoding.nn.SyncBatchNorm`.
+        BatchNorm1d is deprecated in favor of :class:`encoding.nn_encoding.SyncBatchNorm`.
     """
     def __init__(self, *args, **kwargs):
-        warnings.warn("encoding.nn.{} is now deprecated in favor of encoding.nn.{}."
+        warnings.warn("encoding.nn_encoding.{} is now deprecated in favor of encoding.nn_encoding.{}."
                       .format('BatchNorm1d', SyncBatchNorm.__name__), EncodingDeprecationWarning)
         super(BatchNorm1d, self).__init__(*args, **kwargs)
 
 class BatchNorm2d(SyncBatchNorm):
     r"""
     .. warning::
-        BatchNorm2d is deprecated in favor of :class:`encoding.nn.SyncBatchNorm`.
+        BatchNorm2d is deprecated in favor of :class:`encoding.nn_encoding.SyncBatchNorm`.
     """
     def __init__(self, *args, **kwargs):
-        warnings.warn("encoding.nn.{} is now deprecated in favor of encoding.nn.{}."
+        warnings.warn("encoding.nn_encoding.{} is now deprecated in favor of encoding.nn_encoding.{}."
                       .format('BatchNorm2d', SyncBatchNorm.__name__), EncodingDeprecationWarning)
         super(BatchNorm2d, self).__init__(*args, **kwargs)
 
 class BatchNorm3d(SyncBatchNorm):
     r"""
     .. warning::
-        BatchNorm3d is deprecated in favor of :class:`encoding.nn.SyncBatchNorm`.
+        BatchNorm3d is deprecated in favor of :class:`encoding.nn_encoding.SyncBatchNorm`.
     """
     def __init__(self, *args, **kwargs):
-        warnings.warn("encoding.nn.{} is now deprecated in favor of encoding.nn.{}."
+        warnings.warn("encoding.nn_encoding.{} is now deprecated in favor of encoding.nn_encoding.{}."
                       .format('BatchNorm3d', SyncBatchNorm.__name__), EncodingDeprecationWarning)
         super(BatchNorm3d, self).__init__(*args, **kwargs)
